@@ -1,15 +1,99 @@
-<div class="flex flex-col w-full h-full justify-center items-center">
-    <div cdkDrag class="w-64 border border-zinc-600">
+<div class="flex flex-row w-full h-full justify-center items-center gap-20">
+    <div cdkDrag class="w-64 border border-zinc-600" *ngFor="let tabela of tabelas">
         <div class="flex flex-row justify-center bg-slate-300">
             {{ tabela.titulo }}
         </div>
-        <div class="flex flex-row p-1 gap-4 border-b-2 border-neutral-600" *ngFor="let atributo of tabela.atributos">
-            <div>
-                {{ atributo.descricao }}
+        <div class="flex flex-row p-1 gap-4 border-b-2 border-neutral-600" *ngFor="let atributo of tabela.atributos; let index as i">
+            <div class="flex flex-row" *ngIf="atributo.chave_estrangeira?.origem" >
+                <div>
+                    {{ atributo.descricao }} origem
+                </div>
+                <div>
+                    {{ atributo.tipo }}
+                </div>
             </div>
-            <div>
-                {{ atributo.tipo }}
+            <div class="flex flex-row" *ngIf="atributo.chave_estrangeira?.destino">
+                <div>
+                    {{ atributo.descricao }} destino
+                </div>
+                <div>
+                    {{ atributo.tipo }}
+                </div>
+            </div>
+            <div class="flex flex-row" *ngIf="!atributo.chave_estrangeira?.origem && !atributo.chave_estrangeira?.destino">
+                <div>
+                    {{ atributo.descricao }} Nenhuma
+                </div>
+                <div>
+                    {{ atributo.tipo }}
+                </div>
             </div>
         </div>
     </div>
+    <!-- <div class="w-64 border border-zinc-600" cdkDrag (cdkDragMoved)="step5to6line.position()">
+        <div class="flex flex-row justify-center bg-slate-300" >
+            {{ tabelas[0].titulo }}
+        </div>
+        <div class="flex flex-row justify-between p-1 gap-4 border-b-2 border-neutral-600" #step5="ldrDest" #step5to6line="ldrConnector" ldrDest [ldrConnectTo]="step6">
+            <div>
+                {{ tabelas[0].atributos[0].descricao }}
+            </div>
+            <div>
+                {{ tabelas[0].atributos[0].tipo }}
+            </div>
+        </div>
+        <div class="flex flex-row  justify-between p-1 gap-4 border-b-2 border-neutral-600" >
+            <div>
+                {{ tabelas[0].atributos[1].descricao }}
+            </div>
+            <div>
+                {{ tabelas[0].atributos[1].tipo }}
+            </div>
+        </div>
+        <div class="flex flex-row  justify-between p-1 gap-4 border-b-2 border-neutral-600" >
+            <div>
+                {{ tabelas[0].atributos[2].descricao }}
+            </div>
+            <div>
+                {{ tabelas[0].atributos[2].tipo }}
+            </div>
+        </div>
+    </div>
+    <div class="w-64 border border-zinc-600" cdkDrag (cdkDragMoved)="step5to6line.position()">
+        <div class="flex flex-row justify-center bg-slate-300">
+            {{ tabelas[1].titulo }}
+        </div>
+        <div class="flex flex-row justify-between p-1 gap-4 border-b-2 border-neutral-600" >
+            <div>
+                {{ tabelas[1].atributos[0].descricao }}
+            </div>
+            <div>
+                {{ tabelas[1].atributos[0].tipo }}
+            </div>
+        </div>
+        <div class="flex flex-row  justify-between p-1 gap-4 border-b-2 border-neutral-600" >
+            <div>
+                {{ tabelas[1].atributos[1].descricao }}
+            </div>
+            <div>
+                {{ tabelas[1].atributos[1].tipo }}
+            </div>
+        </div>
+        <div class="flex flex-row  justify-between p-1 gap-4 border-b-2 border-neutral-600" >
+            <div>
+                {{ tabelas[1].atributos[2].descricao }}
+            </div>
+            <div>
+                {{ tabelas[1].atributos[2].tipo }}
+            </div>
+        </div>
+        <div class="flex flex-row  justify-between p-1 gap-4 border-b-2 border-neutral-600"  #step6="ldrDest" ldrDest >
+            <div>
+                {{ tabelas[1].atributos[3].descricao }}
+            </div>
+            <div>
+                {{ tabelas[1].atributos[3].tipo }}
+            </div>
+        </div>
+    </div> -->
 </div>
